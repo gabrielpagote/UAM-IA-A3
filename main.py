@@ -82,12 +82,12 @@ def shortest_path(graph, start_node, end_node):
     shortest_path, shortest_distance = dijkstra(graph, start_node, end_node)
     return shortest_path, shortest_distance
 
-# Calcular o caminho mais curto de I para Q
+# Calcular o caminho mais curto de Nó selecionado para Q
 shortest_path_to_Q, shortest_distance_to_Q = shortest_path(G, start_node, "Q")
 print(f"Caminho mais curto de {start_node} para Q: {shortest_path_to_Q}")
 print(f"Distância mais curta de {start_node} para Q: {shortest_distance_to_Q}")
 
-# Calcular o caminho mais curto de I para A
+# Calcular o caminho mais curto de Nó selecionado para A
 shortest_path_to_A, shortest_distance_to_A = shortest_path(G, start_node, "A")
 print(f"Caminho mais curto de {start_node} para A: {shortest_path_to_A}")
 print(f"Distância mais curta de {start_node} para A: {shortest_distance_to_A}")
