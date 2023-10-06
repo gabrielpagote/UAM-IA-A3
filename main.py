@@ -49,8 +49,26 @@ G.add_edge("P", "Q", weight=435)
 nodes = G.nodes()
 edges = G.edges(data=True)
 
-# Aqui que eu tenho que aprender 100% (POSIÇÃO DOS NÓS NO GRAFO)
+# Posição dos nós
 node_positions = {"A": (0, 25), "B": (0.180, 24), "C": (0.160, 20), "D": (0.420, 25), "E": (0.430, 21), "F": (0.450, 19), "G": (0.360, 16), "H": (0.250, 14.5), "I": (0.150, 13), "J": (0.153, 10), "K": (0.470, 11), "L": (0.500, 16), "M": (0.400, 1.8), "N": (0.240, -2), "O": (0.170, 0.4), "P": (0.460, 5.1), "Q": (0.700, 2.38)}
+
+# Criar uma figura para exibir o gráfico antes de solicitar o ponto inicial
+plt.figure(figsize=(5, 5))
+
+# Desenhar os nós
+nx.draw(G, pos=node_positions, with_labels=True, node_size=500, node_color="skyblue")
+
+# Desenhar as arestas e rótulos
+labels = nx.get_edge_attributes(G, "weight")
+nx.draw_networkx_edge_labels(G, pos=node_positions, edge_labels=labels)
+nx.draw_networkx_edges(G, pos=node_positions, edgelist=G.edges(), width=2, edge_color="gray")
+
+# Mostrar o gráfico
+plt.show()
+
+# Solicitar ao usuário o ponto inicial
+start_node = input("Onde você se encontra neste exato momento ? ")
+start_node = start_node.upper()
 
 # Implementação do algoritmo de Dijkstra
 def dijkstra(graph, start, end):
@@ -58,9 +76,8 @@ def dijkstra(graph, start, end):
     shortest_distance = nx.shortest_path_length(graph, source=start, target=end, weight='weight')
     return shortest_path, shortest_distance
 
-start_node = input("Onde você se encontra neste exato momento ? ")
 
-# Função para calcular o caminho mais curto
+# Função para calcular o caminho mais curto 
 def shortest_path(graph, start_node, end_node):
     shortest_path, shortest_distance = dijkstra(graph, start_node, end_node)
     return shortest_path, shortest_distance
@@ -83,7 +100,7 @@ elif shortest_distance_to_A < shortest_distance_to_Q:
 else:
     print("Ambos os caminhos têm a mesma distância mais curta.")
 
-# Obter o caminho mais curto
+# Obter o caminho mais curto 
 caminho_vermelho, _ = shortest_path(G, start_node, "Q")
 caminho_roxo, _ = shortest_path(G, start_node, "A")
 
